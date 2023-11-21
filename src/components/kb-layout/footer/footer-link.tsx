@@ -12,10 +12,9 @@ export const FooterLink: React.FC<{ children: ReactNode; href: string }> = ({
         "footer-footer-link",
         css({
           fontSize: "sm",
-          color: "gray.600",
           lineHeight: "20px",
-          _hover: { color: "red" },
           transition: "color 0.2s ease-in",
+          color: { base: "gray.400", _hover: "gray.600" },
         })
       )}
     >

@@ -11,9 +11,8 @@ export const SocialLink: React.FC<{ children: ReactNode; href: string }> = ({
       className={cx(
         "footer-social-link",
         css({
-          color: "gray.600",
-          _hover: { color: "red" },
           transition: "color 0.2s ease-in",
+          color: { base: "gray.400", _hover: "gray.800" },
         })
       )}
     >

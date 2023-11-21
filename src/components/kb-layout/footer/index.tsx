@@ -9,6 +9,7 @@ import {
   TwitterIcon,
 } from "./icons";
 import { FooterLink } from "./footer-link";
+import Image from "next/image";
 
 export const Footer = () => {
   return (
@@ -80,10 +81,37 @@ export const Footer = () => {
         <section
           className={cx(
             "footer-watermark",
-            flex({ align: "center", justify: "space-between" })
+            flex({
+              mt: "96px",
+              gap: "4px",
+              align: "center",
+              flexFlow: "column",
+              justify: "center",
+            })
           )}
         >
-          <article className={cx("")}></article>
+          <a href="https://simpu.co" className={cx("footer-watermark-logo")}>
+            <Image
+              width={32}
+              height={32}
+              alt="Simpu Logo"
+              src="/logo-black.png"
+            />
+          </a>
+          <a
+            href="https://simpu.co"
+            className={cx(
+              "footer-watermark-text",
+              css({
+                fontSize: "12px",
+                textAlign: "center",
+                transition: "color 0.2s ease-in",
+                color: { base: "gray.400", _hover: "gray.800" },
+              })
+            )}
+          >
+            Powered by Simpu
+          </a>
         </section>
       </section>
     </footer>
