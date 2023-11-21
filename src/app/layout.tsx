@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { KbLayout } from "../components/kb-layout";
+import { SettingsProvider } from "../components/settings-provider";
+import { ReactQueryProvider } from "../components/react-query-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <KbLayout>{children}</KbLayout>
+        <ReactQueryProvider>
+          <SettingsProvider>
+            <KbLayout>{children}</KbLayout>
+          </SettingsProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

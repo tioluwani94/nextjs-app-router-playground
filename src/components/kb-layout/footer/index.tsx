@@ -1,3 +1,5 @@
+"use client";
+
 import { css, cx } from "@/styled-system/css";
 import { container, flex } from "@/styled-system/patterns";
 import React from "react";
@@ -10,8 +12,11 @@ import {
 } from "./icons";
 import { FooterLink } from "./footer-link";
 import Image from "next/image";
+import { useSettings } from "../../settings-provider";
 
 export const Footer = () => {
+  const { social_media_links, footer_links, show_watermark } = useSettings();
+
   return (
     <footer className={cx("footer", css({ w: "full", bg: "gray.100" }))}>
       <section
@@ -46,73 +51,85 @@ export const Footer = () => {
             <div
               className={cx("footer-socials-container", flex({ gap: "24px" }))}
             >
-              <SocialLink href="">
-                <TwitterIcon />
-              </SocialLink>
-              <SocialLink href="">
-                <FacebookIcon />
-              </SocialLink>
-              <SocialLink href="">
-                <LinkedInIcon />
-              </SocialLink>
-              <SocialLink href="">
-                <InstagramIcon />
-              </SocialLink>
+              {social_media_links?.twitter && (
+                <SocialLink href={social_media_links.twitter}>
+                  <TwitterIcon />
+                </SocialLink>
+              )}
+              {social_media_links?.facebook && (
+                <SocialLink href={social_media_links.facebook}>
+                  <FacebookIcon />
+                </SocialLink>
+              )}
+              {social_media_links?.linkedin && (
+                <SocialLink href={social_media_links.linkedin}>
+                  <LinkedInIcon />
+                </SocialLink>
+              )}
+              {social_media_links?.instagram && (
+                <SocialLink href={social_media_links?.instagram}>
+                  <InstagramIcon />
+                </SocialLink>
+              )}
             </div>
           </article>
-          <article
-            className={cx(
-              "footer-details-right",
-              flex({
-                wrap: "wrap",
-                mb: { base: "4", md: "unset", lg: "unset" },
-                gap: { base: "18px", md: "24px", lg: "24px" },
-                flexFlow: { base: "column", md: "row", lg: "row" },
-              })
-            )}
-          >
-            <FooterLink href="">Simpu Status</FooterLink>
-            <FooterLink href="">Privacy</FooterLink>
-            <FooterLink href="">Terms</FooterLink>
-            <FooterLink href="">Legal</FooterLink>
-            <FooterLink href="">SaaS Services Agreement</FooterLink>
-          </article>
-        </section>
-        <section
-          className={cx(
-            "footer-watermark",
-            flex({
-              mt: "96px",
-              gap: "4px",
-              align: "center",
-              flexFlow: "column",
-              justify: "center",
-            })
+          {!!footer_links?.length && (
+            <article
+              className={cx(
+                "footer-details-right",
+                flex({
+                  wrap: "wrap",
+                  mb: { base: "4", md: "unset", lg: "unset" },
+                  gap: { base: "18px", md: "24px", lg: "24px" },
+                  flexFlow: { base: "column", md: "row", lg: "row" },
+                })
+              )}
+            >
+              {footer_links.map((fl) => (
+                <FooterLink href={fl.link} key={fl.link}>
+                  {fl.label}
+                </FooterLink>
+              ))}
+            </article>
           )}
-        >
-          <a href="https://simpu.co" className={cx("footer-watermark-logo")}>
-            <Image
-              width={32}
-              height={32}
-              alt="Simpu Logo"
-              src="/logo-black.png"
-            />
-          </a>
-          <a
-            href="https://simpu.co"
+        </section>
+        {show_watermark && (
+          <section
             className={cx(
-              "footer-watermark-text",
-              css({
-                fontSize: "12px",
-                textAlign: "center",
-                transition: "color 0.2s ease-in",
-                color: { base: "gray.400", _hover: "gray.800" },
+              "footer-watermark",
+              flex({
+                mt: "96px",
+                gap: "4px",
+                align: "center",
+                flexFlow: "column",
+                justify: "center",
               })
             )}
           >
-            Powered by Simpu
-          </a>
-        </section>
+            <a href="https://simpu.co" className={cx("footer-watermark-logo")}>
+              <Image
+                width={32}
+                height={32}
+                alt="Simpu Logo"
+                src="/logo-black.png"
+              />
+            </a>
+            <a
+              href="https://simpu.co"
+              className={cx(
+                "footer-watermark-text",
+                css({
+                  fontSize: "12px",
+                  textAlign: "center",
+                  transition: "color 0.2s ease-in",
+                  color: { base: "gray.400", _hover: "gray.800" },
+                })
+              )}
+            >
+              Powered by Simpu
+            </a>
+          </section>
+        )}
       </section>
     </footer>
   );
