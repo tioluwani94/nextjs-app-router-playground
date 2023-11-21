@@ -14,7 +14,7 @@ export const KbLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       })}
     >
       <Header />
-      {children}
+      <section className={css({ flex: 1 })}>{children}</section>
       <Footer />
     </main>
   );
