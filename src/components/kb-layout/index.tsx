@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { css } from "@/styled-system/css";
 import { Footer } from "./footer";
 import { Header } from "./header";
+import { Content } from "./content";
 
 export const KbLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
@@ -14,7 +15,7 @@ export const KbLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       })}
     >
       <Header />
-      <section className={css({ flex: 1 })}>{children}</section>
+      <Content>{children}</Content>
       <Footer />
     </main>
   );

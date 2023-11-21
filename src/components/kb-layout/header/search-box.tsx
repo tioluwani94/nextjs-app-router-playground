@@ -9,16 +9,21 @@ export const SearchBox = () => {
         "searchbox-container",
         flex({
           mb: "40px",
-          direction: "column",
-          justify: "center",
           align: "center",
+          justify: "center",
+          direction: "column",
+          mx: { base: "4" },
         })
       )}
     >
       <div
         className={cx(
           "searchbox-wrapper",
-          css({ w: "50%", maxW: "500px", pos: "relative" })
+          css({
+            maxW: "500px",
+            pos: "relative",
+            w: { base: "100%", md: "50%", lg: "50%" },
+          })
         )}
       >
         <div className={css({ pos: "relative" })}>
