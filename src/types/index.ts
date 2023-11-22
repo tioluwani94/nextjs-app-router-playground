@@ -24,4 +24,5 @@ export type HelpCenterSettings = {
   privacy_policy_link?: string;
   default_domain?: string;
   custom_domain?: string;
+  header_theme?: 'light' | 'dark';
 };

@@ -1,14 +1,20 @@
-"use client";
-
-import React from "react";
+import { HelpCenterSettings } from "@/src/types";
 import { css, cx } from "@/styled-system/css";
+import React from "react";
 import { HeroText } from "./hero-text";
 import { Navbar } from "./navbar";
 import { SearchBox } from "./search-box";
-import { useSettings } from "../../settings-provider";
 
-export const Header = () => {
-  const { hero_text, primary_color, hero_image } = useSettings();
+export const Header = (props: Pick<HelpCenterSettings, 'logo' | 'name' | 'header_links' | 'hero_text' | 'hero_image'| 'primary_color' | 'header_theme'>) => {
+  const { 
+    logo, 
+    name,
+    hero_text, 
+    hero_image, 
+    header_theme,
+    header_links, 
+    primary_color,
+  } = props;
 
   return (
     <header
@@ -19,6 +25,7 @@ export const Header = () => {
           bgSize: "cover",
           flex: "0 0 auto",
           minHeight: "240px",
+          color: header_theme === 'light' ? 'white' :  'gray.800'
         })
       )}
       style={{
@@ -26,9 +33,9 @@ export const Header = () => {
         backgroundImage: `url(${hero_image})`,
       }}
     >
-      <Navbar />
+      <Navbar name={name} logo={logo} header_links={header_links} />
       <HeroText>{hero_text}</HeroText>
-      <SearchBox />
+      <SearchBox header_theme={header_theme} />
     </header>
   );
 };

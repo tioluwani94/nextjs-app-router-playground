@@ -1,10 +1,11 @@
-"use client";
-
 import React from "react";
 import { css, cx } from "@/styled-system/css";
 import { flex } from "@/styled-system/patterns";
+import { HelpCenterSettings } from "@/src/types";
 
-export const SearchBox = () => {
+export const SearchBox = (props: Pick<HelpCenterSettings, 'header_theme'>) => {
+  const { header_theme } = props;
+
   return (
     <section
       className={cx(
@@ -35,8 +36,8 @@ export const SearchBox = () => {
                 align: "center",
                 h: "40px",
                 pl: "32px",
-                bg: "gray.100",
                 rounded: "8px",
+                bg: header_theme === 'light' ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)',
               }),
               css({
                 _focusWithin: {
@@ -80,7 +81,7 @@ export const SearchBox = () => {
             <div
               className={cx(
                 "searchbox-icon-wrapper",
-                css({ w: "16px", h: "16px", color: "gray.800" })
+                css({ w: "16px", h: "16px" })
               )}
             >
               <svg

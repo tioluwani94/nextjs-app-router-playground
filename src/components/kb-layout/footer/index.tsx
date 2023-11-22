@@ -1,21 +1,20 @@
-"use client";
-
+import { HelpCenterSettings } from "@/src/types";
 import { css, cx } from "@/styled-system/css";
 import { container, flex } from "@/styled-system/patterns";
-import React from "react";
-import { SocialLink } from "./social-link";
-import {
-  FacebookIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  TwitterIcon,
-} from "./icons";
-import { FooterLink } from "./footer-link";
 import Image from "next/image";
-import { useSettings } from "../../settings-provider";
+import React from "react";
+import { FooterLink } from "./footer-link";
+import
+  {
+    FacebookIcon,
+    InstagramIcon,
+    LinkedInIcon,
+    TwitterIcon
+  } from "./icons";
+import { SocialLink } from "./social-link";
 
-export const Footer = () => {
-  const { social_media_links, footer_links, show_watermark } = useSettings();
+export const Footer = (props: Pick<HelpCenterSettings, 'social_media_links' | 'footer_links' | 'show_watermark'>) => {
+  const { social_media_links, footer_links, show_watermark } = props;
 
   return (
     <footer className={cx("footer", css({ w: "full", bg: "gray.100" }))}>

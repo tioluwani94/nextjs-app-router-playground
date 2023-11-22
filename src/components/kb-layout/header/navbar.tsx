@@ -1,13 +1,11 @@
-"use client";
-
+import { HelpCenterSettings } from "@/src/types";
+import { css, cx } from "@/styled-system/css";
+import { container, hstack } from "@/styled-system/patterns";
 import Image from "next/image";
 import React from "react";
-import { css, cx } from "@/styled-system/css";
-import { container } from "@/styled-system/patterns";
-import { useSettings } from "../../settings-provider";
 
-export const Navbar = () => {
-  const { logo, header_links } = useSettings();
+export const Navbar = (props: Pick<HelpCenterSettings, 'logo' | 'name' | 'header_links'>) => {
+  const { logo, name, header_links } = props;
 
   const styles = {
     logoContainer: css({
@@ -30,6 +28,16 @@ export const Navbar = () => {
       alignItems: "center",
       textDecoration: "none",
     }),
+    title: css({
+      fontSize: '18px',
+      fontWeight: 600,
+      whiteSpace: 'nowrap',
+      textDecoration: 'none',
+      _before: {
+        content: '" "',
+        display: 'inline-block',
+      },
+    })
   };
 
   return (
@@ -46,9 +54,14 @@ export const Navbar = () => {
         })
       )}
     >
-      <a className={cx("navbar-logo-container", styles.logoContainer)}>
-        <Image width={32} height={32} src={logo ?? ""} alt="logo" />
-      </a>
+      <div className={hstack()}>
+        {logo && 
+          <a href="/" className={cx("navbar-logo-container", styles.logoContainer)}>
+            <Image width={32} height={32} src={logo ?? ""} alt="logo" />
+          </a>
+        }
+        {name && <a href="/" className={cx("navbar-title", styles.title)}>{name}</a>}
+      </div>
       {!!header_links?.length && (
         <ul className={cx("navbar-links-container", styles.linksContainer)}>
           {header_links?.map((hl) => (
