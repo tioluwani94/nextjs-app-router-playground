@@ -25,7 +25,7 @@ export const Header = (props: Pick<HelpCenterSettings, 'logo' | 'name' | 'header
           bgSize: "cover",
           flex: "0 0 auto",
           minHeight: "240px",
-          color: header_theme === 'light' ? 'white' :  'gray.800'
+          color: header_theme === 'light' ? 'white' : 'gray.800'
         })
       )}
       style={{
@@ -33,7 +33,7 @@ export const Header = (props: Pick<HelpCenterSettings, 'logo' | 'name' | 'header
         backgroundImage: `url(${hero_image})`,
       }}
     >
-      <Navbar name={name} logo={logo} header_links={header_links} />
+      <Navbar name={name} logo={logo} header_links={header_links} header_theme={header_theme} />
       <HeroText>{hero_text}</HeroText>
       <SearchBox header_theme={header_theme} />
     </header>

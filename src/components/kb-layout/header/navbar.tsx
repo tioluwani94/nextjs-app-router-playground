@@ -4,8 +4,8 @@ import { container, hstack } from "@/styled-system/patterns";
 import Image from "next/image";
 import React from "react";
 
-export const Navbar = (props: Pick<HelpCenterSettings, 'logo' | 'name' | 'header_links'>) => {
-  const { logo, name, header_links } = props;
+export const Navbar = (props: Pick<HelpCenterSettings, 'logo' | 'name' | 'header_theme' | 'header_links'>) => {
+  const { logo, name, header_theme, header_links } = props;
 
   const styles = {
     logoContainer: css({
@@ -29,13 +29,20 @@ export const Navbar = (props: Pick<HelpCenterSettings, 'logo' | 'name' | 'header
       textDecoration: "none",
     }),
     title: css({
+      display: 'flex',
       fontSize: '18px',
       fontWeight: 600,
+      alignItems: 'center',
       whiteSpace: 'nowrap',
       textDecoration: 'none',
       _before: {
-        content: '" "',
+        w: '1px',
+        mr: '12px',
+        opacity: 0.2,
+        height: '20px',
+        content: '""',
         display: 'inline-block',
+        bg: header_theme === 'light' ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 0.1)'
       },
     })
   };
