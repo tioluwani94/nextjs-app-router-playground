@@ -33,17 +33,18 @@ export const SearchBox = (props: Pick<HelpCenterSettings, 'header_theme'>) => {
           <div
             className={cx(
               flex({
-                align: "center",
                 h: "40px",
                 pl: "32px",
                 rounded: "8px",
+                align: "center",
                 bg: header_theme === 'light' ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)',
               }),
               css({
                 _focusWithin: {
-                  bg: "white",
                   borderWidth: "2px",
                   borderColor: "blue.500",
+                  color: header_theme === 'light' ? 'gray.800' : 'white',
+                  bg: header_theme === 'light' ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 0.1)',
                 },
               })
             )}
@@ -62,6 +63,10 @@ export const SearchBox = (props: Pick<HelpCenterSettings, 'header_theme'>) => {
                     border: "none",
                     bg: "transparent",
                     fontSize: "14px",
+                    _placeholder: {color: header_theme === 'light' ? 'white' : 'gray.400'},
+                    _focus: {
+                      _placeholder: {color: header_theme === 'light' ? 'gray.400' : 'white'}
+                    }
                   })}
                 />
               </form>

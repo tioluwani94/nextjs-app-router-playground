@@ -1,5 +1,6 @@
 import { css, cx } from "@/styled-system/css";
 import { flex, stack } from "@/styled-system/patterns";
+import Link from "next/link";
 import { Collection } from "../types";
 
 const getCollections = async (): Promise<Collection[]> => {
@@ -18,12 +19,12 @@ export default async function Home() {
 
   return (
     <section className={stack({gap: '12px'})}>{
-      collections.map(c => (<div key={c.slug} className={cx(flex(), css({p: '12px 16px', borderWidth: '1px', rounded: '16px', borderColor: 'gray.100'}))}>
+      collections.map(c => (<Link href={`/collection/${c.slug}`} key={c.slug} className={cx(flex(), css({p: '12px 16px', borderWidth: '1px', rounded: '16px', borderColor: 'gray.200'}))}>
         <div className={cx(stack({gap: '8px', direction: 'column'}))}>
           <h3>{c.name}</h3>
           <p>{c.description}</p>
           </div>
-        </div>))
+        </Link>))
     }</section>
   )
 }
