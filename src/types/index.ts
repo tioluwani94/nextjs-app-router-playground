@@ -26,3 +26,17 @@ export type HelpCenterSettings = {
   custom_domain?: string;
   header_theme?: 'light' | 'dark';
 };
+
+export type BlogPost = {
+  slug: string;
+  title: string;
+  content: string;
+  description: string;
+}
+
+export type Collection = {
+  name: string;
+  slug: string;
+  description: string;
+  blogPosts?: any[]
+}
