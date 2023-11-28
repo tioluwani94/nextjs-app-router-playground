@@ -10,9 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.8.4",
-    "@tanstack/react-query-devtools": "^5.8.4",
-    "@tanstack/react-query-next-experimental": "^5.8.4",
+    "@zag-js/avatar": "^0.30.0",
+    "@zag-js/react": "^0.30.0",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18"

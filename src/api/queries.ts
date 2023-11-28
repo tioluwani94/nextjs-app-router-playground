@@ -75,7 +75,7 @@ export const getArticle = async (slug: string): Promise<Article> => {
     }
   
     return res.json();
-  };
+};
   
 export const getArticlesWithoutCollection = async (): Promise<Article[]> => {
     const defaultDomainName = getDomain();
