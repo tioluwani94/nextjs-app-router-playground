@@ -19,12 +19,13 @@ export type HelpCenterSettings = {
   home_page_link?: string;
   site_visibility?: boolean;
   enable_livechat_widget?: boolean;
-  livechat_channel_id?: string;
   google_analytics_tag?: string;
   privacy_policy_link?: string;
   default_domain?: string;
   custom_domain?: string;
   header_theme?: "light" | "dark";
+  livechat_app_id?: string;
+  organization_public_key?: string;
 };
 
 export type Article = {
@@ -48,3 +49,10 @@ export type Collection = {
   description: string;
   blogPosts?: Article[];
 };
+
+declare global {
+  interface Window {
+    google: any;
+    [key: string]: any;
+  }
+}

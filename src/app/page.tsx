@@ -1,35 +1,8 @@
 import { css, cx } from "@/styled-system/css";
 import { stack } from "@/styled-system/patterns";
 import Link from "next/link";
-import { Article, Collection } from "../types";
-
-const getCollections = async (): Promise<Collection[]> => {
-  const res = await fetch(
-    `${process.env.BASE_API_URL}/collection/public/findersme`,
-    { next: { revalidate: 0 } }
-  );
-
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-};
-
-const getArticles = async (): Promise<Article[]> => {
-  const res = await fetch(
-    `${process.env.BASE_API_URL}/article/public/findersme?page=1`,
-    { next: { revalidate: 0 } }
-  );
-
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-};
+import { getArticles, getCollections } from "../api/queries";
+import { ArticleIcon, CollectionIcon } from "../components/icons";
 
 export default async function Home() {
   const articles = await getArticles();
@@ -41,18 +14,19 @@ export default async function Home() {
         <div className={stack({ gap: "12px" })}>
           {collections.map((c) => (
             <Link
-              href={`/collection/${c.slug}`}
               key={c.slug}
+              href={`/collection/${c.slug}`}
               className={cx(
-                stack({ gap: "8px" }),
+                stack({ gap: "12px", direction: 'row', align: 'center' }),
                 css({
-                  p: "12px 16px",
+                  p: "16px",
+                  rounded: "8px",
                   borderWidth: "1px",
-                  rounded: "16px",
                   borderColor: "gray.200",
                 })
               )}
             >
+              <CollectionIcon />
               <div className={cx(stack({ gap: "4px", direction: "column" }))}>
                 <h3
                   className={cx(
@@ -89,19 +63,22 @@ export default async function Home() {
         <div className={stack({ gap: "12px" })}>
           {articles.map((c) => (
             <Link
-              href={`/article/${c.slug}`}
               key={c.slug}
+              href={`/article/${c.slug}`}
               className={cx(
-                stack({ gap: "8px" }),
+                stack({ gap: "12px", direction: 'row', align: 'center' }),
                 css({
-                  p: "12px 16px",
+                  p: "16px",
+                  rounded: "8px",
                   borderWidth: "1px",
-                  rounded: "16px",
                   borderColor: "gray.200",
                 })
               )}
             >
-              <div className={cx(stack({ gap: "4px", direction: "column" }))}>
+              <div className={cx(css({w: '32px', h:'32px', color: 'gray.800'}))}>
+                <ArticleIcon  />
+              </div>
+              <div className={cx(stack({ gap: "0", direction: "column" }))}>
                 <h3
                   className={cx(
                     "article-card-title",

@@ -8,7 +8,7 @@ import {
   InstagramIcon,
   LinkedInIcon,
   TwitterIcon,
-} from "./icons";
+} from "../../icons";
 import { SocialLink } from "./social-link";
 
 export const Footer = (
