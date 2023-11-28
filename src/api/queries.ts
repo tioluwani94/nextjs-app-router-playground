@@ -42,8 +42,42 @@ export const getCollections = async (): Promise<Collection[]> => {
   
     return res.json();
   };
+
+
+export const getCollection = async (slug: string): Promise<Collection> => {
+    const defaultDomainName = getDomain();
+
+    const res = await fetch(
+      `${process.env.BASE_API_URL}/collection/public/findersme/${slug}`,
+      { next: { revalidate: 0 } }
+    );
   
-export const getArticles = async (): Promise<Article[]> => {
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    }
+  
+    return res.json();
+  };
+
+
+export const getArticle = async (slug: string): Promise<Article> => {
+    const defaultDomainName = getDomain();
+
+    const res = await fetch(
+      `${process.env.BASE_API_URL}/article/public/findersme/${slug}`,
+      { next: { revalidate: 0 } }
+    );
+  
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    }
+  
+    return res.json();
+  };
+  
+export const getArticlesWithoutCollection = async (): Promise<Article[]> => {
     const defaultDomainName = getDomain();
     
     const res = await fetch(
@@ -58,3 +92,17 @@ export const getArticles = async (): Promise<Article[]> => {
   
     return res.json();
 };
+
+export const getArticlesByCollectionSlug = async (colletion_slug:string): Promise<Article[]> => {
+    const res = await fetch(
+        `${process.env.BASE_API_URL}/article/public/findersme/${colletion_slug}`,
+        { next: { revalidate: 0 } }
+      );
+  
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    }
+    
+    return res.json();
+}

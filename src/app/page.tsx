@@ -1,11 +1,11 @@
 import { css, cx } from "@/styled-system/css";
 import { stack } from "@/styled-system/patterns";
 import Link from "next/link";
-import { getArticles, getCollections, getHelpcenterSettings } from "../api/queries";
+import { getArticlesWithoutCollection, getCollections, getHelpcenterSettings } from "../api/queries";
 import { ArticleIcon, CollectionIcon } from "../components/icons";
 
 export default async function Home() {
-  const articles = await getArticles();
+  const articles = await getArticlesWithoutCollection();
   const collections = await getCollections();
   const settings = await getHelpcenterSettings()
 
