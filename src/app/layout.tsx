@@ -20,7 +20,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ReactQueryProvider>
-            <KbLayout>{children}</KbLayout>
+          <KbLayout>{children}</KbLayout>
         </ReactQueryProvider>
       </body>
     </html>

@@ -5,15 +5,28 @@ import { HeroText } from "./hero-text";
 import { Navbar } from "./navbar";
 import { SearchBox } from "./search-box";
 
-export const Header = (props: Pick<HelpCenterSettings, 'logo' | 'name' | 'header_links' | 'hero_text' | 'hero_image'| 'primary_color' | 'header_theme'>) => {
-  const { 
-    logo, 
+export const Header = (
+  props: Pick<
+    HelpCenterSettings,
+    | "logo"
+    | "name"
+    | "header_links"
+    | "hero_text"
+    | "hero_image"
+    | "primary_color"
+    | "header_theme"
+    | "secondary_color"
+  >
+) => {
+  const {
+    logo,
     name,
-    hero_text, 
-    hero_image, 
+    hero_text,
+    hero_image,
     header_theme,
-    header_links, 
+    header_links,
     primary_color,
+    secondary_color,
   } = props;
 
   return (
@@ -25,7 +38,7 @@ export const Header = (props: Pick<HelpCenterSettings, 'logo' | 'name' | 'header
           bgSize: "cover",
           flex: "0 0 auto",
           minHeight: "240px",
-          color: header_theme === 'light' ? 'white' : 'gray.800'
+          color: header_theme === "light" ? "white" : "gray.800",
         })
       )}
       style={{
@@ -33,7 +46,13 @@ export const Header = (props: Pick<HelpCenterSettings, 'logo' | 'name' | 'header
         backgroundImage: `url(${hero_image})`,
       }}
     >
-      <Navbar name={name} logo={logo} header_links={header_links} header_theme={header_theme} />
+      <Navbar
+        name={name}
+        logo={logo}
+        header_links={header_links}
+        header_theme={header_theme}
+        secondary_color={secondary_color}
+      />
       <HeroText>{hero_text}</HeroText>
       <SearchBox header_theme={header_theme} />
     </header>

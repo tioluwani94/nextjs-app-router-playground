@@ -8,36 +8,38 @@ import { headers } from "next/headers";
 
 async function getHelpcenterSettings(): Promise<HelpCenterSettings> {
   const headersInstance = headers();
-  const referer = headersInstance.get('referer');
-  const splitReferer = referer?.split('.');
+  const referer = headersInstance.get("referer");
+  const splitReferer = referer?.split(".");
   const defaultDomainName = splitReferer?.[0];
 
-  const res = await fetch(`${process.env.BASE_API_URL}/settings/public/findersme`, 
-    { next: { revalidate: 0 }
-  });
+  const res = await fetch(
+    `${process.env.BASE_API_URL}/settings/public/findersme`,
+    { next: { revalidate: 0 } }
+  );
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
+    throw new Error("Failed to fetch data");
   }
- 
-  return res.json()
+
+  return res.json();
 }
 
 export default async function KbLayout({ children }: { children: ReactNode }) {
   const data = await getHelpcenterSettings();
-  const { 
-    logo, 
+  const {
+    logo,
     name,
     hero_text,
-    hero_image, 
-    header_links, 
-    footer_links, 
-    primary_color, 
-    show_watermark,
-    social_media_links,
+    hero_image,
+    header_links,
+    footer_links,
     header_theme,
-  }  = data;
+    primary_color,
+    show_watermark,
+    secondary_color,
+    social_media_links,
+  } = data;
 
   return (
     <main
@@ -48,21 +50,23 @@ export default async function KbLayout({ children }: { children: ReactNode }) {
         minHeight: "100vh",
       })}
     >
-      <Header 
+      <Header
         logo={logo}
         name={name}
-        hero_text={hero_text} 
-        hero_image={hero_image} 
-        header_links={header_links} 
+        hero_text={hero_text}
+        hero_image={hero_image}
+        header_links={header_links}
         header_theme={header_theme}
         primary_color={primary_color}
+        secondary_color={secondary_color}
       />
       <Content>{children}</Content>
-      <Footer 
-        footer_links={footer_links} 
-        show_watermark={show_watermark} 
-        social_media_links={social_media_links} 
+      <Footer
+        footer_links={footer_links}
+        show_watermark={show_watermark}
+        secondary_color={secondary_color}
+        social_media_links={social_media_links}
       />
     </main>
   );
-};
+}

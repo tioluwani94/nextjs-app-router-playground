@@ -24,19 +24,27 @@ export type HelpCenterSettings = {
   privacy_policy_link?: string;
   default_domain?: string;
   custom_domain?: string;
-  header_theme?: 'light' | 'dark';
+  header_theme?: "light" | "dark";
 };
 
-export type BlogPost = {
+export type Article = {
   slug: string;
   title: string;
   content: string;
   description: string;
-}
+  author?: {
+    uuid: string;
+    first_name: string;
+    last_name: string;
+    image: string;
+  };
+  author_id: string;
+  collection_id?: string;
+};
 
 export type Collection = {
   name: string;
   slug: string;
   description: string;
-  blogPosts?: any[]
-}
+  blogPosts?: Article[];
+};
