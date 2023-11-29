@@ -19,11 +19,11 @@ export default async function Home() {
       p: "16px",
       rounded: "8px",
       borderWidth: "1px",
-      borderColor: "gray.200",
+      borderColor: {base: "gray.200", _hover: settings.secondary_color},
     },
     cardIconContainer: {
-      w: '32px', 
-      h:'32px'
+      w: '64px', 
+      h:'64px'
     },
     cardTitle: { 
       fontWeight: 500, 
@@ -50,7 +50,7 @@ export default async function Home() {
                 key={c.slug}
                 href={`/collection/${c.slug}`}
                 className={cx("collection-card",
-                  stack({ gap: "24px", direction: 'row' }),
+                  stack({ gap: "24px", direction: 'row', align: 'center' }),
                   css(styles.card)
                 )}
               >
@@ -87,7 +87,7 @@ export default async function Home() {
                 key={c.slug}
                 href={`/article/${c.slug}`}
                 className={cx("article-card",
-                  stack({ gap: "24px", direction: 'row' }),
+                  stack({ gap: "24px", direction: 'row', align: 'center' }),
                   css(styles.card)
                 )}
               >

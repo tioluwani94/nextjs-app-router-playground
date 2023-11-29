@@ -45,6 +45,8 @@ export type Article = {
     name: string;
     slug: string;
   }
+  updated_datetime: string;
+  created_datetime: string;
 };
 
 export type Collection = {
@@ -52,6 +54,8 @@ export type Collection = {
   slug: string;
   description: string;
   blogPosts?: Article[];
+  updated_datetime: string;
+  created_datetime: string;
 };
 
 declare global {

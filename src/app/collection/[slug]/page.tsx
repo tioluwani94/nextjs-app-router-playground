@@ -29,20 +29,20 @@ export default async function CollectionPage({ params }: { params: { slug: strin
     articleListItem: SystemStyleObject
   } = {
     headerIconContainer: {
-      w: '48px',
-      h: '48px',
+      w: '64px',
+      h: '64px',
     },
     headerTitle: {
       fontSize: '3xl',
       fontWeight: 700,
     },
     headerSubtitle: {
-      fontSize: 'md',
-      color: 'gray.700',
+      fontSize: 'sm',
+      color: 'gray.500',
     },
     headerMeta: {
-      fontSize: "md", 
-      color: "gray.700" 
+      fontSize: "sm", 
+      color: "gray.500" 
     },
     articleList: {
       rounded: 'md',
@@ -59,7 +59,7 @@ export default async function CollectionPage({ params }: { params: { slug: strin
 
   return (
     <div className={cx("content", stack({ gap: '32px', direction: 'column' }))}>
-      <BreadCrumb spacing="8px" separator=">">
+      <BreadCrumb spacing="8px" separator={<div className={css({w:'12px', h:'12px'})}><ChevronRight/></div>}>
         <BreadCrumbItem>
           <BreadCrumbLink href='/'>Home</BreadCrumbLink>
         </BreadCrumbItem>
@@ -67,11 +67,11 @@ export default async function CollectionPage({ params }: { params: { slug: strin
           <BreadCrumbLink>{collection.name}</BreadCrumbLink>
         </BreadCrumbItem>
       </BreadCrumb>
-      <div className={cx("content-header", stack({ gap: '8px', direction: 'column' }))}>
+      <div className={cx("content-header", stack({ gap: '8px', direction: 'row' }))}>
         <div className={cx("content-header-icon-container", css(styles.headerIconContainer))} style={{ color: settings.secondary_color }}>
           <CollectionIcon />
         </div>
-        <div className={stack({ gap: '2px' })}>
+        <div className={stack({ gap: '0' })}>
           <h1 className={cx("content-header-title", css(styles.headerTitle))}>{collection.name}</h1>
           <div className={stack({ direction: 'row', align: 'center' })}>
             {!!collection.description && (

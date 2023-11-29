@@ -95,7 +95,7 @@ export const getArticlesWithoutCollection = async (): Promise<Article[]> => {
 
 export const getArticlesByCollectionSlug = async (colletion_slug:string): Promise<Article[]> => {
     const res = await fetch(
-        `${process.env.BASE_API_URL}/article/public/findersme/${colletion_slug}`,
+        `${process.env.BASE_API_URL}/article/public/findersme/collections/${colletion_slug}`,
         { next: { revalidate: 0 } }
       );
   
