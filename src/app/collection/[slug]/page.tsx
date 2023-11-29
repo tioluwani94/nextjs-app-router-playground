@@ -1,4 +1,5 @@
 import { getArticlesByCollectionSlug, getCollection, getHelpcenterSettings } from '@/src/api/queries';
+import { BreadCrumb, BreadCrumbItem, BreadCrumbLink } from '@/src/components/breadcrumb';
 import { ChevronRight, CollectionIcon, DotIcon } from '@/src/components/icons';
 import { css, cx } from '@/styled-system/css';
 import { flex, stack } from '@/styled-system/patterns';
@@ -58,6 +59,14 @@ export default async function CollectionPage({ params }: { params: { slug: strin
 
   return (
     <div className={cx("content", stack({ gap: '32px', direction: 'column' }))}>
+      <BreadCrumb spacing="8px" separator=">">
+        <BreadCrumbItem>
+          <BreadCrumbLink href='/'>Home</BreadCrumbLink>
+        </BreadCrumbItem>
+        <BreadCrumbItem isCurrentPage>
+          <BreadCrumbLink>{collection.name}</BreadCrumbLink>
+        </BreadCrumbItem>
+      </BreadCrumb>
       <div className={cx("content-header", stack({ gap: '8px', direction: 'column' }))}>
         <div className={cx("content-header-icon-container", css(styles.headerIconContainer))} style={{ color: settings.secondary_color }}>
           <CollectionIcon />

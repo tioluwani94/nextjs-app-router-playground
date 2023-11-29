@@ -41,6 +41,10 @@ export type Article = {
   };
   author_id: string;
   collection_id?: string;
+  collection_data?: {
+    name: string;
+    slug: string;
+  }
 };
 
 export type Collection = {
