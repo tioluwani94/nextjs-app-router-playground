@@ -1,11 +1,52 @@
-import React from "react";
+"use client"
+
+import { useDebounce, useOutsideAlerter } from "@/src/helpers/hooks";
+import { Article, HelpCenterSettings } from "@/src/types";
 import { css, cx } from "@/styled-system/css";
 import { flex } from "@/styled-system/patterns";
-import { HelpCenterSettings } from "@/src/types";
+import { useQuery } from '@tanstack/react-query';
+import Link from "next/link";
+import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 
 export const SearchBox = (props: Pick<HelpCenterSettings, 'header_theme'>) => {
   const { header_theme } = props;
+  const popoverRef = useRef<HTMLDivElement>(null);
 
+  const [search, setSearch] = useState('');
+  const [showPopover, setShowPopover] = useState(false);
+
+  const debouncedSearch = useDebounce(search);
+  useOutsideAlerter(popoverRef, () => setShowPopover(false));
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value)
+  }
+
+  const {data: articles} = useQuery<Article[]>({
+    queryKey: ['search-results', debouncedSearch],
+    queryFn: async () => {
+      const res: Article[] = await (
+        await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/article/public/findersme/search?q=${debouncedSearch}`, {
+          cache: 'no-store',
+        })
+      ).json()
+      return res
+    },
+    enabled: !!debouncedSearch
+  });
+
+  const handleShowPopover = useCallback(() => {
+    if(!!Array.isArray(articles) && search) {
+      setShowPopover(true)
+    }else {
+      setShowPopover(false)
+    }
+  }, [articles?.length, search])
+
+  useEffect(() => {
+    handleShowPopover()
+  }, [articles])
+ 
   return (
     <section
       className={cx(
@@ -52,9 +93,14 @@ export const SearchBox = (props: Pick<HelpCenterSettings, 'header_theme'>) => {
             <div className={css({ w: "full" })}>
               <form className="searchbox-form">
                 <input
-                  placeholder="Search articles"
-                  type="search"
                   name="q"
+                  type="search"
+                  value={search}
+                  onChange={handleSearch}
+                  onFocus={handleShowPopover}
+                  onMouseUp={handleShowPopover}
+                  onMouseDown={handleShowPopover} 
+                  placeholder="Search articles"
                   className={css({
                     p: 0,
                     h: "40px",
@@ -106,6 +152,41 @@ export const SearchBox = (props: Pick<HelpCenterSettings, 'header_theme'>) => {
             </div>
           </div>
         </div>
+        {
+          showPopover && (
+            <div 
+                ref={popoverRef} 
+                className={css({ 
+                  w: '100%', 
+                  zIndex: 2, 
+                  p: '12px',
+                  gap:'12px', 
+                  bg: 'white', 
+                  rounded: 'sm', 
+                  boxShadow:'sm', 
+                  borderWidth: '1px',
+                  direction: 'column',
+                  position: 'absolute', 
+                  borderColor: 'gray.50', 
+                })
+              }
+            >
+              {
+              !articles?.length ? <p className={css({ color: 'gray.500' })}>We couldn't find any articles for: <strong>{search}</strong></p> :
+                <>
+                  {
+                    articles?.map(a => (
+                      <Link href={`/article/${a.slug}`} key={a.slug} className={css({display:'block',p: '8px 12px',rounded: 'md',borderWidth: '1px',borderColor: 'gray.100', _hover: {boxShadow: 'xs'}})}>
+                        <h2 className={css({color: 'gray.800', fontWeight: 700})}>{a.title}</h2>
+                        <p className={css({color: 'gray.500', fontSize: 'sm'})}>{a.description}</p>
+                      </Link>
+                    ))
+                  }
+                </>
+              }
+            </div>
+          )
+        }
       </div>
     </section>
   );

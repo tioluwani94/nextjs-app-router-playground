@@ -2,7 +2,7 @@ import { getArticle } from '@/src/api/queries';
 import { Avatar } from '@/src/components/avatar';
 import { BreadCrumb, BreadCrumbItem, BreadCrumbLink } from '@/src/components/breadcrumb';
 import { ChevronRight } from '@/src/components/icons';
-import { formatMessageDateTime } from '@/src/helpers';
+import { formatMessageDateTime } from '@/src/helpers/functions';
 import { css, cx } from '@/styled-system/css';
 import { stack } from '@/styled-system/patterns';
 import { SystemStyleObject } from '@/styled-system/types';
@@ -62,7 +62,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
               )}
             </div>
           </div>
-          <div className={cx(stack({ gap: '8px', direction: 'row' }))}>
+          <div className={cx(stack({ gap: '8px', direction: 'row', align: 'center' }))}>
             <Avatar size='lg' css={{bg: 'red', color: 'white'}} name={article.author?.first_name ?? ''} src={article.author?.image} />
             <div className={cx(stack({ gap: '0', direction: 'column' }))}>
               <p className={cx(css({ fontSize: 'sm', color: 'gray.500' }))}>Written by {article.author?.first_name}</p>

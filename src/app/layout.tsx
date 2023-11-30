@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import { getHelpcenterSettings } from "../api/queries";
 import KbLayout from "../components/kb-layout";
+import { ReactQueryProvider } from "../components/react-query-provider";
 import { SimpuWidget } from "../components/simpu-widget";
 import "./globals.css";
 
@@ -27,7 +28,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <KbLayout>{children}</KbLayout>
+        <ReactQueryProvider>
+          <KbLayout>{children}</KbLayout>
+        </ReactQueryProvider>
       </body>
       {res.enable_livechat_widget && <>
         <Script
