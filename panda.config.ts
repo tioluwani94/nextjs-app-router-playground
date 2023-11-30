@@ -1,5 +1,6 @@
 import { defineConfig } from "@pandacss/dev";
-import { avatarRecipe } from "./src/components/avatar/recipe";
+import { globalCss } from '@/src/components/styles'
+import { avatarRecipe } from "@/src/components/avatar/recipe";
 
 export default defineConfig({
   // Whether to use css reset
@@ -19,6 +20,8 @@ export default defineConfig({
       }
     },
   },
+
+  globalCss,
 
   // The output directory for your css system
   outdir: "styled-system",

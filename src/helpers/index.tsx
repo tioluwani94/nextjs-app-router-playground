@@ -11,7 +11,7 @@ export const formatMessageDateTime = (time: Date) => {
       case differenceInSeconds(now, time) < 60:
         return 'a few seconds ago';
       case isToday(time):
-        return format(time, 'hh:mm a');
+        return `Today, ${format(time, 'hh:mm a')}`;
       case isYesterday(time):
         return `Yesterday, ${format(time, 'hh:mm a')}`;
       case differenceInDays(now, time) < 7:

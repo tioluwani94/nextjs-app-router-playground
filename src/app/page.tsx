@@ -19,7 +19,11 @@ export default async function Home() {
       p: "16px",
       rounded: "8px",
       borderWidth: "1px",
-      borderColor: {base: "gray.200", _hover: settings.secondary_color},
+      transition: 'box-shadow border-color 0.2s ease-in',
+      borderColor: { base: "gray.200", _hover: settings.secondary_color },
+      _hover: {
+        boxShadow: 'xs'
+      }
     },
     cardIconContainer: {
       w: '64px', 

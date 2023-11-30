@@ -27,6 +27,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     title: {
       fontSize: '3xl',
       fontWeight: 700,
+      color: 'gray.800',
     },
     description: {
       fontSize: 'md',
@@ -70,7 +71,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           </div>
         </div>
       </div>
-      <div className={cx("article-content")}>
+      <div className={cx("article-content", css({ color: 'gray.800' }))}>
         <div dangerouslySetInnerHTML={{ __html: article.content ?? ''}}/>
       </div>
     </div>
