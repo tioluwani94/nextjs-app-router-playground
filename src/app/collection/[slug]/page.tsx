@@ -1,6 +1,6 @@
 import { getArticlesByCollectionSlug, getCollection, getHelpcenterSettings } from '@/src/api/queries';
 import { BreadCrumb, BreadCrumbItem, BreadCrumbLink } from '@/src/components/breadcrumb';
-import { ChevronRight, CollectionIcon, DotIcon } from '@/src/components/icons';
+import { ChevronRightIcon, CollectionIcon, DotIcon } from '@/src/components/icons';
 import { css, cx } from '@/styled-system/css';
 import { flex, stack } from '@/styled-system/patterns';
 import { SystemStyleObject } from '@/styled-system/types';
@@ -59,7 +59,7 @@ export default async function CollectionPage({ params }: { params: { slug: strin
 
   return (
     <div className={cx("content", stack({ gap: '32px', direction: 'column' }))}>
-      <BreadCrumb spacing="8px" separator={<div className={css({w:'12px', h:'12px'})}><ChevronRight/></div>}>
+      <BreadCrumb spacing="8px" separator={<div className={css({w:'12px', h:'12px'})}><ChevronRightIcon/></div>}>
         <BreadCrumbItem>
           <BreadCrumbLink href='/'>Home</BreadCrumbLink>
         </BreadCrumbItem>
@@ -92,7 +92,7 @@ export default async function CollectionPage({ params }: { params: { slug: strin
             >
               {a.title}
               <div className={css({ w: '16px', h: '16px' })} style={{ color: settings.secondary_color }}>
-                <ChevronRight />
+                <ChevronRightIcon />
               </div>
             </Link>
           ))}

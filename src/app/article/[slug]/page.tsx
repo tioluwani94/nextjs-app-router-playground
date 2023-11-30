@@ -1,7 +1,7 @@
 import { getArticle } from '@/src/api/queries';
 import { Avatar } from '@/src/components/avatar';
 import { BreadCrumb, BreadCrumbItem, BreadCrumbLink } from '@/src/components/breadcrumb';
-import { ChevronRight } from '@/src/components/icons';
+import { ChevronRightIcon } from '@/src/components/icons';
 import { formatMessageDateTime } from '@/src/helpers/functions';
 import { css, cx } from '@/styled-system/css';
 import { stack } from '@/styled-system/patterns';
@@ -41,7 +41,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
   return (
     <div className={cx("article", stack({ gap: '32px', direction: 'column' }))}>
-      <BreadCrumb spacing="8px" separator={<div className={css({w:'12px', h:'12px'})}><ChevronRight/></div>}>
+      <BreadCrumb spacing="8px" separator={<div className={css({w:'12px', h:'12px'})}><ChevronRightIcon/></div>}>
         <BreadCrumbItem>
           <BreadCrumbLink href='/'>Home</BreadCrumbLink>
         </BreadCrumbItem>

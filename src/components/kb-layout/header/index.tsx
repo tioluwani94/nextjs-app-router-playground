@@ -51,6 +51,7 @@ export const Header = (
         logo={logo}
         header_links={header_links}
         header_theme={header_theme}
+        primary_color={primary_color}
         secondary_color={secondary_color}
       />
       <HeroText>{hero_text}</HeroText>
