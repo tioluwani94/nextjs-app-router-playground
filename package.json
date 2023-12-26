@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ark-ui/react": "^1.2.1",
     "@tanstack/react-query": "^5.10.0",
     "@tanstack/react-query-next-experimental": "^5.10.0",
     "@zag-js/avatar": "^0.30.0",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@pandacss/dev": "^0.18.3",
+    "@park-ui/panda-preset": "^0.27.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

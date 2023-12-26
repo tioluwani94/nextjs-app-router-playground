@@ -24,7 +24,7 @@ export interface Conditions {
 	"_readWrite": string
 	/** `&:is(:empty, [data-empty])` */
 	"_empty": string
-	/** `&:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"])` */
+	/** `&:is(:checked, [data-checked], [aria-checked=true], [data-state=checked])` */
 	"_checked": string
 	/** `&:enabled` */
 	"_enabled": string
@@ -102,7 +102,7 @@ export interface Conditions {
 	"_groupExpanded": string
 	/** `.group:invalid &` */
 	"_groupInvalid": string
-	/** `&:is(:indeterminate, [data-indeterminate], [aria-checked=mixed], [data-state="indeterminate")` */
+	/** `&:is(:indeterminate, [data-indeterminate], [aria-checked=mixed], [data-state=indeterminate])` */
 	"_indeterminate": string
 	/** `&:is(:required, [data-required], [aria-required=true])` */
 	"_required": string
@@ -118,7 +118,7 @@ export interface Conditions {
 	"_outOfRange": string
 	/** `&::placeholder` */
 	"_placeholder": string
-	/** `&:placeholder-shown` */
+	/** `&:is(:placeholder-shown, [data-placeholder-shown])` */
 	"_placeholderShown": string
 	/** `&:is([aria-pressed=true], [data-pressed])` */
 	"_pressed": string
@@ -128,9 +128,9 @@ export interface Conditions {
 	"_default": string
 	/** `&:optional` */
 	"_optional": string
-	/** `&:is([open], [data-open], [data-state="open"])` */
+	/** `&:is([open], [data-state=open])` */
 	"_open": string
-	/** `&:is([closed], [data-closed], [data-state="closed"])` */
+	/** `&:is([data-state=closed])` */
 	"_closed": string
 	/** `&:fullscreen` */
 	"_fullscreen": string
@@ -178,6 +178,16 @@ export interface Conditions {
 	"_horizontal": string
 	/** `&[data-orientation=vertical]` */
 	"_vertical": string
+	/** `&:is([hidden])` */
+	"_hidden": string
+	/** `&:is([data-current])` */
+	"_current": string
+	/** `&:is([data-today])` */
+	"_today": string
+	/** `&:is([aria-collapsed=true], [data-collapsed], [data-state="collapsed"])` */
+	"_collapsed": string
+	/** `&:is([data-state="under-value"])` */
+	"_underValue": string
 	/** `@media screen and (min-width: 40em)` */
 	"sm": string
 	/** `@media screen and (min-width: 40em) and (max-width: 47.9975em)` */

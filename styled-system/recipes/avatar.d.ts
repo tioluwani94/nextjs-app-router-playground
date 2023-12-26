@@ -3,7 +3,7 @@ import type { ConditionalValue } from '../types/index';
 import type { DistributiveOmit, Pretty } from '../types/system-types';
 
 interface AvatarVariant {
-  size: "sm" | "md" | "lg"
+  size: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 }
 
 type AvatarVariantMap = {
@@ -16,12 +16,12 @@ export type AvatarVariantProps = {
 
 export interface AvatarRecipe {
   __type: AvatarVariantProps
-  (props?: AvatarVariantProps): string
+  (props?: AvatarVariantProps): Pretty<Record<"root" | "image" | "fallback", string>>
   raw: (props?: AvatarVariantProps) => AvatarVariantProps
   variantMap: AvatarVariantMap
   variantKeys: Array<keyof AvatarVariant>
   splitVariantProps<Props extends AvatarVariantProps>(props: Props): [AvatarVariantProps, Pretty<DistributiveOmit<Props, keyof AvatarVariantProps>>]
 }
 
-/** The styles for the Avatar component */
+
 export declare const avatar: AvatarRecipe
