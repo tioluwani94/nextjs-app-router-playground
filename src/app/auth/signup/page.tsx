@@ -9,10 +9,10 @@ import { css } from '~/styled-system/css';
 import { Divider, HStack, Stack, VStack } from '~/styled-system/jsx';
 import { GoogleIcon } from '~/components/icons/google';
 
-export default function LoginPage() {
+export default function SignupPage() {
   return (
     <Stack gap={4}>
-        <h1 className={css({ textAlign: 'center', fontWeight: 'bold', fontSize: 'xl' })}>Welcome back</h1>
+        <h1 className={css({ textAlign: 'center', fontWeight: 'bold', fontSize: 'xl' })}>Sign up for free</h1>
         <Stack>
             <Button colorPalette='gray' variant='outline'><GoogleIcon css={{ w: "16px", h: "16px", color: "gray.800" }} /> Continue with Google</Button>
             <HStack>
@@ -30,13 +30,10 @@ export default function LoginPage() {
                         <Label htmlFor='password'>Password</Label>
                         <PasswordInput id="password" name='password' />
                     </VStack>
-                    <Link asChild textStyle='sm'>
-                        <NextLink href="/auth/forgot-password">Forgot Password?</NextLink>
-                    </Link>
-                    <Button w="100%">Login</Button>
+                    <Button w="100%">Sign up</Button>
                     <HStack w="100%" gap={1} justify="center">
-                        <p className={css({fontSize: 'sm', color: 'fg.muted'})}>No account yet?</p>
-                        <Link asChild textStyle='sm'><NextLink href='/auth/signup'>Sign up</NextLink></Link>
+                        <p className={css({fontSize: 'sm', color: 'fg.muted'})}>Already have an account?</p>
+                        <Link asChild textStyle='sm'><NextLink href='/auth/login'>Log in</NextLink></Link>
                     </HStack>
                 </VStack>
             </form>
